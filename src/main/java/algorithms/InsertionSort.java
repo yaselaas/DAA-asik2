@@ -108,47 +108,52 @@ public class InsertionSort {
     }
 
     /**
-     * Optimized version with guard element
+     * Optimized version with guard element - improved implementation
      */
     private static void optimizedInsertionSort(int[] array) {
         if (array.length <= 1) return;
 
-        // Optimization: find minimum element and place at start
-        // Creates guard element and reduces j >= 0 checks
-        int minIndex = 0;
-        for (int i = 1; i < array.length; i++) {
-            comparisons++;
-            if (array[i] < array[minIndex]) {
-                minIndex = i;
-            }
-        }
-
-        // Place minimum element at start if not already there
-        if (minIndex != 0) {
-            swap(array, 0, minIndex);
-        }
-
-        // Main sorting with guard element at array[0]
-        for (int i = 2; i < array.length; i++) {
-            iterations++;
-            int key = array[i];
-            arrayAccesses++;
-            int j = i - 1;
-
-            // Thanks to guard element, no need to check j >= 0
-            while (array[j] > key) {
+        // Only use guard element optimization for larger arrays
+        // For small arrays, overhead might not be beneficial
+        if (array.length > 10) {
+            // Optimization: find minimum element and place at start
+            int minIndex = 0;
+            for (int i = 1; i < array.length; i++) {
                 comparisons++;
-                array[j + 1] = array[j];
-                swaps++;
-                arrayAccesses += 2;
-                j--;
+                if (array[i] < array[minIndex]) {
+                    minIndex = i;
+                }
             }
-            comparisons++; // Account for last comparison
-            array[j + 1] = key;
-            arrayAccesses++;
+
+            // Place minimum element at start if not already there
+            if (minIndex != 0) {
+                swap(array, 0, minIndex);
+            }
+
+            // Main sorting with guard element at array[0]
+            for (int i = 2; i < array.length; i++) {
+                iterations++;
+                int key = array[i];
+                arrayAccesses++;
+                int j = i - 1;
+
+                // Thanks to guard element, no need to check j >= 0
+                while (array[j] > key) {
+                    comparisons++;
+                    array[j + 1] = array[j];
+                    swaps++;
+                    arrayAccesses += 2;
+                    j--;
+                }
+                comparisons++; // Account for last comparison
+                array[j + 1] = key;
+                arrayAccesses++;
+            }
+        } else {
+            // For small arrays, use basic version to avoid overhead
+            basicInsertionSort(array);
         }
     }
-
     /**
      * Binary search version for insertion position
      */
