@@ -5,10 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Comprehensive test suite for InsertionSort algorithm
- * Covers all edge cases and performance scenarios
- */
 class InsertionSortTest {
 
     @BeforeEach
@@ -115,8 +111,6 @@ class InsertionSortTest {
         assertTrue(InsertionSort.isSorted(array1));
         assertTrue(InsertionSort.isSorted(array2));
 
-        // For educational purposes, just log the comparison results
-        // Optimized version may not always have fewer comparisons due to guard element overhead
         if (optimizedComparisons < basicComparisons) {
             System.out.println("✓ Optimization reduced comparisons by " + (basicComparisons - optimizedComparisons));
         } else {

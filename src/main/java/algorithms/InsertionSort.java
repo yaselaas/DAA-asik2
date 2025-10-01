@@ -2,22 +2,7 @@ package algorithms;
 
 import metrics.PerformanceTracker;
 
-/**
- * Insertion Sort implementation with advanced optimizations
- * for nearly-sorted data and detailed metrics collection
- *
- * Features:
- * - Basic Insertion Sort version
- * - Optimized version with guard element
- * - Binary search version for reduced comparisons
- * - Complete performance metrics tracking
- *
- * Complexity:
- * - Best case: O(n) - already sorted array
- * - Worst case: O(n²) - reverse sorted array
- * - Average case: O(n²)
- * - Space: O(1) - in-place sorting
- */
+
 public class InsertionSort {
     // Static counters for detailed operation tracking
     private static long comparisons;
@@ -25,11 +10,6 @@ public class InsertionSort {
     private static long arrayAccesses;
     private static long iterations;
 
-    /**
-     * Basic Insertion Sort version
-     * @param array array to sort
-     * @throws IllegalArgumentException if array is null
-     */
     public static void sort(int[] array) {
         validateArray(array);
         resetMetrics();
@@ -41,12 +21,6 @@ public class InsertionSort {
         saveMetrics("basic");
     }
 
-    /**
-     * Optimized version for nearly-sorted data
-     * Uses guard element to reduce comparison count
-     * @param array array to sort
-     * @throws IllegalArgumentException if array is null
-     */
     public static void sortOptimized(int[] array) {
         validateArray(array);
         resetMetrics();
@@ -58,12 +32,7 @@ public class InsertionSort {
         saveMetrics("optimized");
     }
 
-    /**
-     * Binary search version for insertion position finding
-     * Reduces comparisons at the cost of increased array accesses
-     * @param array array to sort
-     * @throws IllegalArgumentException if array is null
-     */
+
     public static void sortWithBinarySearch(int[] array) {
         validateArray(array);
         resetMetrics();
@@ -75,11 +44,6 @@ public class InsertionSort {
         saveMetrics("binary_search");
     }
 
-    // ===== ALGORITHM IMPLEMENTATIONS =====
-
-    /**
-     * Basic Insertion Sort implementation
-     */
     private static void basicInsertionSort(int[] array) {
         if (array.length <= 1) return;
 
@@ -154,9 +118,7 @@ public class InsertionSort {
             basicInsertionSort(array);
         }
     }
-    /**
-     * Binary search version for insertion position
-     */
+
     private static void binarySearchInsertionSort(int[] array) {
         if (array.length <= 1) return;
 
@@ -179,9 +141,6 @@ public class InsertionSort {
         }
     }
 
-    /**
-     * Binary search for insertion position
-     */
     private static int binarySearchPosition(int[] array, int left, int right, int key) {
         while (left <= right) {
             int mid = left + (right - left) / 2;
@@ -199,11 +158,6 @@ public class InsertionSort {
         return left;
     }
 
-    // ===== HELPER METHODS =====
-
-    /**
-     * Swap two elements in array
-     */
     private static void swap(int[] array, int i, int j) {
         int temp = array[i];
         array[i] = array[j];
@@ -212,18 +166,12 @@ public class InsertionSort {
         arrayAccesses += 4;
     }
 
-    /**
-     * Validate input array
-     */
     private static void validateArray(int[] array) {
         if (array == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }
     }
 
-    /**
-     * Reset all metrics
-     */
     private static void resetMetrics() {
         comparisons = 0;
         swaps = 0;
@@ -232,9 +180,6 @@ public class InsertionSort {
         PerformanceTracker.reset();
     }
 
-    /**
-     * Save metrics to PerformanceTracker
-     */
     private static void saveMetrics(String prefix) {
         PerformanceTracker.setMetric(prefix + "_comparisons", comparisons);
         PerformanceTracker.setMetric(prefix + "_swaps", swaps);
@@ -242,16 +187,12 @@ public class InsertionSort {
         PerformanceTracker.setMetric(prefix + "_iterations", iterations);
     }
 
-    // ===== PUBLIC METRIC ACCESS METHODS =====
 
     public static long getComparisons() { return comparisons; }
     public static long getSwaps() { return swaps; }
     public static long getArrayAccesses() { return arrayAccesses; }
     public static long getIterations() { return iterations; }
 
-    /**
-     * Check if array is sorted
-     */
     public static boolean isSorted(int[] array) {
         if (array == null || array.length <= 1) {
             return true;
@@ -265,9 +206,6 @@ public class InsertionSort {
         return true;
     }
 
-    /**
-     * Utility method to print array
-     */
     public static void printArray(int[] array) {
         if (array == null) {
             System.out.println("null");

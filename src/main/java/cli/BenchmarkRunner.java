@@ -7,10 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * CLI utility for running benchmarks and collecting performance metrics
- * Tests multiple array types and sizes for comprehensive analysis
- */
+
 public class BenchmarkRunner {
 
     public static void main(String[] args) {
@@ -19,7 +16,7 @@ public class BenchmarkRunner {
             return;
         }
 
-        System.out.println("🚀 Insertion Sort Benchmark");
+        System.out.println("Insertion Sort Benchmark");
         System.out.println("============================");
 
         // CSV header
@@ -31,7 +28,7 @@ public class BenchmarkRunner {
             csvWriter.write("Type,Size,Time(ns),Comparisons,Swaps,ArrayAccesses,Iterations\n");
 
             for (int size : sizes) {
-                System.out.printf("\n📊 Testing size: %d%n", size);
+                System.out.printf("\nTesting size: %d%n", size);
 
                 // Test on random data
                 int[] randomArray = generateRandomArray(size);
