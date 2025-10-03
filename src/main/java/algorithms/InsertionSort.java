@@ -71,9 +71,6 @@ public class InsertionSort {
         }
     }
 
-    /**
-     * Optimized version with guard element - improved implementation
-     */
     private static void optimizedInsertionSort(int[] array) {
         if (array.length <= 1) return;
 
